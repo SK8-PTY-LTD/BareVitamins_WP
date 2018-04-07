@@ -11,4 +11,31 @@ function sk8tech_theme_enqueue_styles() {
         array( $parent_style )
     );
 }
+
+/**
+* Customizing the Login Form
+* Change the Login Logo
+* @author Jacktator
+* @see https://codex.wordpress.org/Customizing_the_Login_Form
+*/
+function customize_login_logo() { ?>
+    <style type="text/css">
+        #login h1 a, .login h1 a {
+            background-image: url(<?php echo 
+get_stylesheet_directory_uri(); ?>/images/login-logo.png);
+        }
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'customize_login_logo' );
+
+function my_login_logo_url() {
+    return 'https://sk8.tech/services/web-design';
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+    return 'Web Design by SK8Tech';
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
 ?>
